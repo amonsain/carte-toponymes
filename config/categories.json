@@ -4,168 +4,168 @@
     {
       "id": "religieux",
       "nom": "Saint- / Sainte- (hagiotoponyme)",
-      "couleur": "#7b3294",
+      "couleur": "#a67bd4",
       "type": "prefixe",
       "motif": "^(saint|sainte|st|ste)[\\s-]"
     },
     {
       "id": "cotier",
       "nom": "-sur-Mer (littoral)",
-      "couleur": "#1f9fbf",
+      "couleur": "#00819c",
       "type": "complement",
       "motif": "sur[\\s-]mer$"
     },
     {
       "id": "riverain",
       "nom": "-sur- ... (au bord d'un cours d'eau)",
-      "couleur": "#74add1",
+      "couleur": "#4a97e1",
       "type": "complement",
       "motif": "[\\s-]sur[\\s-]"
     },
     {
       "id": "germanique_heim",
       "nom": "-heim / -willer / -weiler (germanique)",
-      "couleur": "#1a9850",
+      "couleur": "#369653",
       "type": "suffixe",
       "motif": "(heim|willer|weiler|viller|villers)$"
     },
     {
       "id": "germanique_ange",
       "nom": "-ange / -ing(en) (germanique)",
-      "couleur": "#006837",
+      "couleur": "#889e31",
       "type": "suffixe",
       "motif": "(ange|inge|ingen|ing)$"
     },
     {
       "id": "germanique_dorf",
       "nom": "-dorf (village, germanique)",
-      "couleur": "#4d4d4d",
+      "couleur": "#8f6800",
       "type": "suffixe",
       "motif": "(dorf)$"
     },
     {
       "id": "franc_court",
       "nom": "-court (domaine franc, curtis)",
-      "couleur": "#08519c",
+      "couleur": "#5e7bd0",
       "type": "suffixe",
       "motif": "(court|curt)$"
     },
     {
       "id": "villa_ville",
       "nom": "-ville (villa / domaine)",
-      "couleur": "#2171b5",
+      "couleur": "#994e93",
       "type": "suffixe",
       "motif": "(ville)$"
     },
     {
       "id": "galloromain_gnac",
       "nom": "-gnac (gallo-romain -aniacum, Sud)",
-      "couleur": "#99000d",
+      "couleur": "#af4a40",
       "type": "suffixe",
       "motif": "(gnac)$"
     },
     {
       "id": "galloromain_ac",
       "nom": "-ac / -acq (gallo-romain -acum, Sud)",
-      "couleur": "#b2182b",
+      "couleur": "#d3773e",
       "type": "suffixe",
       "motif": "(ac|acq)$"
     },
     {
       "id": "occitan_argues",
       "nom": "-argues (occitan -anicum, Languedoc)",
-      "couleur": "#ae017e",
+      "couleur": "#ba5b8b",
       "type": "suffixe",
       "motif": "(argues|argue)$"
     },
     {
       "id": "galloromain_ieu",
       "nom": "-ieu(x) (-acum, franco-provencal)",
-      "couleur": "#fdae61",
+      "couleur": "#b77600",
       "type": "suffixe",
       "motif": "(ieu|ieux)$"
     },
     {
       "id": "galloromain_y",
       "nom": "-y / -ay / -e (-acum, Nord)",
-      "couleur": "#f46d43",
+      "couleur": "#c2603d",
       "type": "suffixe",
       "motif": "(ay|ey|y|é)$"
     },
     {
       "id": "galloromain_an",
       "nom": "-an / -ans / -ens (-anum)",
-      "couleur": "#c51b7d",
+      "couleur": "#d66c82",
       "type": "suffixe",
       "motif": "(an|ans|ens)$"
     },
     {
       "id": "savoyard_alpin",
       "nom": "-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)",
-      "couleur": "#6a3d9a",
+      "couleur": "#8b85e1",
       "type": "suffixe",
       "motif": "(az|oz|ex)$|(?<!cro)ix$"
     },
     {
       "id": "norrois_eur",
       "nom": "-eur / -fleur (norrois, Normandie)",
-      "couleur": "#35978f",
+      "couleur": "#00876f",
       "type": "suffixe",
       "motif": "(eur|fleur)$"
     },
     {
       "id": "suffixe_uit",
       "nom": "-uit / -thuit (essart, Normandie)",
-      "couleur": "#542788",
+      "couleur": "#b476c7",
       "type": "suffixe",
       "motif": "(uit)$"
     },
     {
       "id": "suffixe_ou",
       "nom": "-ou (finale vocalique)",
-      "couleur": "#7fbc41",
+      "couleur": "#948100",
       "type": "suffixe",
       "motif": "(ou)$"
     },
     {
       "id": "bourg",
       "nom": "-bourg (place fortifiee)",
-      "couleur": "#fee08b",
+      "couleur": "#cc7d2a",
       "type": "suffixe",
       "motif": "(bourg)$"
     },
     {
       "id": "mont",
       "nom": "-mont (relief)",
-      "couleur": "#8c510a",
+      "couleur": "#aa5212",
       "type": "suffixe",
       "motif": "(mont)$"
     },
     {
       "id": "val",
       "nom": "-val / -vaux (vallee)",
-      "couleur": "#80cdc1",
+      "couleur": "#00aba4",
       "type": "suffixe",
       "motif": "(val|vaux)$"
     },
     {
       "id": "mesnil",
       "nom": "-mesnil / -menil (domaine rural, Normandie)",
-      "couleur": "#bf812d",
+      "couleur": "#4a7f24",
       "type": "suffixe",
       "motif": "(mesnil|ménil|menil)$"
     },
     {
       "id": "complement_les",
       "nom": "-lès- / -les- (aupres de)",
-      "couleur": "#dfc27d",
+      "couleur": "#ab9104",
       "type": "complement",
       "motif": "[\\s-](lès|lez|les)[\\s-]"
     },
     {
       "id": "complement_en",
       "nom": "-en- ... (dans le pays de)",
-      "couleur": "#bc80bd",
+      "couleur": "#c96ea9",
       "type": "complement",
       "motif": "[\\s-]en[\\s-]"
     },
