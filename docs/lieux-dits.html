@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lieux-dits de France — toponymes</title>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
+<style>
+  html,body{margin:0;height:100%;font-family:system-ui,sans-serif;background:#111}
+  #map{position:absolute;inset:0}
+  .panel{position:absolute;z-index:1;background:rgba(255,255,255,.96);border-radius:8px;
+    box-shadow:0 1px 8px rgba(0,0,0,.4)}
+  #titre{top:10px;left:10px;padding:8px 12px;font-weight:600}
+  #titre small{display:block;font-weight:400;color:#666}
+  #titre a{color:#2171b5;text-decoration:none;font-size:12px}
+  #legende{top:10px;right:10px;max-height:calc(100% - 20px);overflow:auto;padding:8px 10px;
+    width:355px;font-size:13px}
+  .bar{display:flex;gap:6px;margin-bottom:6px}
+  .bar button{flex:1;padding:4px;font-size:12px;cursor:pointer;border:1px solid #ccc;
+    border-radius:5px;background:#f7f7f7}
+  .bar button.on{background:#333;color:#fff;border-color:#333}
+  .titrebar{font-size:11px;text-transform:uppercase;letter-spacing:.04em;color:#888;margin:8px 0 3px}
+  .fam{display:flex;align-items:center;margin:7px 0 2px;cursor:pointer;border-top:1px solid #eee;padding-top:5px}
+  .fam b{flex:1}
+  .l{display:flex;align-items:center;margin:1px 0 1px 6px;line-height:1.3;cursor:pointer;padding:1px 3px;border-radius:4px}
+  .l:hover{background:#f0f0f0} .l input{margin-right:6px}
+  .n{color:#999;font-variant-numeric:tabular-nums;font-size:12px;margin-left:auto;padding-left:8px}
+  .s{width:14px;height:14px;border-radius:3px;margin-right:7px;flex:0 0 auto;border:1px solid rgba(0,0,0,.2)}
+  .chk{display:flex;align-items:center;gap:6px;margin:4px 0;font-size:13px;cursor:pointer}
+  .maplibregl-popup-content{font-size:13px}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="titre" class="panel">Lieux-dits de France<small>151 856 lieux-dits typés / 1 060 266 au total — <a href="index.html">↩ carte des communes</a></small></div>
+<div id="legende" class="panel">
+  <div class="titrebar">Fond de carte</div>
+  <div class="bar" id="fonds">
+    <button data-bg="sombre" class="on">Sombre</button><button data-bg="gris">Gris</button><button data-bg="osm">OSM</button>
+  </div>
+  <div class="titrebar">Couleur</div>
+  <div class="bar" id="modes"><button data-mode="detail" class="on">Détail</button><button data-mode="fam">Familles</button></div>
+  <label class="chk"><input type="checkbox" id="frontiere"> Frontière oïl / oc (approx.)</label>
+  <div class="titrebar">Familles &amp; suffixes <span style="text-transform:none;color:#bbb">(clic famille = tout)</span></div>
+  <div class="bar"><button id="tout">Tout</button><button id="rien">Aucun</button></div>
+  <div class="fam" data-fam="0" title="Tout activer/desactiver"><span class="s" style="background:#9085e9"></span><b>Religieux</b><span class="n">11 570&nbsp;· 1%</span></div><label class="l"><input type="checkbox" data-cat="religieux" data-family="0" checked><span class="s sw" data-detail="#a67bd4" data-fam="#9085e9" style="background:#a67bd4"></span>Saint- / Sainte- (hagiotoponyme)<span class="n">11 570</span></label><div class="fam" data-fam="1" title="Tout activer/desactiver"><span class="s" style="background:#e66767"></span><b>Gallo-romain & latin</b><span class="n">76 956&nbsp;· 7%</span></div><label class="l"><input type="checkbox" data-cat="galloromain_gnac" data-family="1" checked><span class="s sw" data-detail="#af4a40" data-fam="#e66767" style="background:#af4a40"></span>-gnac (gallo-romain -aniacum, Sud)<span class="n">888</span></label><label class="l"><input type="checkbox" data-cat="galloromain_ac" data-family="1" checked><span class="s sw" data-detail="#b54e0b" data-fam="#e66767" style="background:#b54e0b"></span>-ac / -acq (gallo-romain -acum, Sud)<span class="n">5 477</span></label><label class="l"><input type="checkbox" data-cat="occitan_argues" data-family="1" checked><span class="s sw" data-detail="#ba5b8b" data-fam="#e66767" style="background:#ba5b8b"></span>-argues (occitan -anicum, Languedoc)<span class="n">357</span></label><label class="l"><input type="checkbox" data-cat="galloromain_ieu" data-family="1" checked><span class="s sw" data-detail="#aa6412" data-fam="#e66767" style="background:#aa6412"></span>-ieu(x) (-acum, franco-provencal)<span class="n">5 472</span></label><label class="l"><input type="checkbox" data-cat="galloromain_y" data-family="1" checked><span class="s sw" data-detail="#b98918" data-fam="#e66767" style="background:#b98918"></span>-y / -ay / -e (-acum, Nord)<span class="n">49 463</span></label><label class="l"><input type="checkbox" data-cat="galloromain_an" data-family="1" checked><span class="s sw" data-detail="#d66c82" data-fam="#e66767" style="background:#d66c82"></span>-an / -ans / -ens (-anum)<span class="n">9 181</span></label><label class="l"><input type="checkbox" data-cat="villa_ville" data-family="1" checked><span class="s sw" data-detail="#994e93" data-fam="#e66767" style="background:#994e93"></span>-ville (villa / domaine)<span class="n">6 118</span></label><div class="fam" data-fam="2" title="Tout activer/desactiver"><span class="s" style="background:#008300"></span><b>Germanique & franc</b><span class="n">7 111&nbsp;· 1%</span></div><label class="l"><input type="checkbox" data-cat="germanique_heim" data-family="2" checked><span class="s sw" data-detail="#369653" data-fam="#008300" style="background:#369653"></span>-heim / -willer / -weiler (germanique)<span class="n">891</span></label><label class="l"><input type="checkbox" data-cat="germanique_ange" data-family="2" checked><span class="s sw" data-detail="#889e31" data-fam="#008300" style="background:#889e31"></span>-ange / -ing(en) (germanique)<span class="n">3 729</span></label><label class="l"><input type="checkbox" data-cat="germanique_dorf" data-family="2" checked><span class="s sw" data-detail="#8f6800" data-fam="#008300" style="background:#8f6800"></span>-dorf (village, germanique)<span class="n">81</span></label><label class="l"><input type="checkbox" data-cat="germanique_bach" data-family="2" checked><span class="s sw" data-detail="#008461" data-fam="#008300" style="background:#008461"></span>-bach (ruisseau, germanique)<span class="n">803</span></label><label class="l"><input type="checkbox" data-cat="flamand" data-family="2" checked><span class="s sw" data-detail="#668736" data-fam="#008300" style="background:#668736"></span>Flamand (-ghem, -becque, -hout)<span class="n">113</span></label><label class="l"><input type="checkbox" data-cat="franc_court" data-family="2" checked><span class="s sw" data-detail="#5e7bd0" data-fam="#008300" style="background:#5e7bd0"></span>-court (domaine franc, curtis)<span class="n">1 494</span></label><div class="fam" data-fam="3" title="Tout activer/desactiver"><span class="s" style="background:#b76935"></span><b>Celtique (breton, gaulois)</b><span class="n">23 680&nbsp;· 2%</span></div><label class="l"><input type="checkbox" data-cat="breton" data-family="3" checked><span class="s sw" data-detail="#1c8bb9" data-fam="#b76935" style="background:#1c8bb9"></span>Breton (Plou-, Ker-, Lan-, Tré-, -ec)<span class="n">21 634</span></label><label class="l"><input type="checkbox" data-cat="gaulois_euil" data-family="3" checked><span class="s sw" data-detail="#53a768" data-fam="#b76935" style="background:#53a768"></span>-euil / -eul (gaulois -ialo, clairière)<span class="n">2 046</span></label><div class="fam" data-fam="4" title="Tout activer/desactiver"><span class="s" style="background:#199e70"></span><b>Normand (norrois)</b><span class="n">1 504&nbsp;· 0%</span></div><label class="l"><input type="checkbox" data-cat="norrois_eur" data-family="4" checked><span class="s sw" data-detail="#00876f" data-fam="#199e70" style="background:#00876f"></span>-eur / -fleur (norrois, Normandie)<span class="n">598</span></label><label class="l"><input type="checkbox" data-cat="suffixe_uit" data-family="4" checked><span class="s sw" data-detail="#b476c7" data-fam="#199e70" style="background:#b476c7"></span>-uit / -thuit (essart, Normandie)<span class="n">264</span></label><label class="l"><input type="checkbox" data-cat="mesnil" data-family="4" checked><span class="s sw" data-detail="#4a7f24" data-fam="#199e70" style="background:#4a7f24"></span>-mesnil / -menil (domaine rural, Normandie)<span class="n">642</span></label><div class="fam" data-fam="5" title="Tout activer/desactiver"><span class="s" style="background:#3987e5"></span><b>Eau & locatifs</b><span class="n">8 429&nbsp;· 1%</span></div><label class="l"><input type="checkbox" data-cat="cotier" data-family="5" checked><span class="s sw" data-detail="#00819c" data-fam="#3987e5" style="background:#00819c"></span>-sur-Mer (littoral)<span class="n">91</span></label><label class="l"><input type="checkbox" data-cat="riverain" data-family="5" checked><span class="s sw" data-detail="#4a97e1" data-fam="#3987e5" style="background:#4a97e1"></span>-sur- ... (au bord d'un cours d'eau)<span class="n">2 287</span></label><label class="l"><input type="checkbox" data-cat="complement_les" data-family="5" checked><span class="s sw" data-detail="#ab9104" data-fam="#3987e5" style="background:#ab9104"></span>-lès- / -les- (aupres de)<span class="n">5 199</span></label><label class="l"><input type="checkbox" data-cat="complement_en" data-family="5" checked><span class="s sw" data-detail="#c96ea9" data-fam="#3987e5" style="background:#c96ea9"></span>-en- ... (dans le pays de)<span class="n">852</span></label><div class="fam" data-fam="6" title="Tout activer/desactiver"><span class="s" style="background:#d55181"></span><b>Savoyard (alpin)</b><span class="n">1 155&nbsp;· 0%</span></div><label class="l"><input type="checkbox" data-cat="savoyard_alpin" data-family="6" checked><span class="s sw" data-detail="#8b85e1" data-fam="#d55181" style="background:#8b85e1"></span>-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)<span class="n">1 155</span></label><div class="fam" data-fam="7" title="Tout activer/desactiver"><span class="s" style="background:#c98500"></span><b>Paysage (relief, vallée, bourg)</b><span class="n">11 509&nbsp;· 1%</span></div><label class="l"><input type="checkbox" data-cat="mont" data-family="7" checked><span class="s sw" data-detail="#aa5212" data-fam="#c98500" style="background:#aa5212"></span>-mont (relief)<span class="n">4 616</span></label><label class="l"><input type="checkbox" data-cat="val" data-family="7" checked><span class="s sw" data-detail="#00aba4" data-fam="#c98500" style="background:#00aba4"></span>-val / -vaux (vallee)<span class="n">4 098</span></label><label class="l"><input type="checkbox" data-cat="bourg" data-family="7" checked><span class="s sw" data-detail="#cc7d2a" data-fam="#c98500" style="background:#cc7d2a"></span>-bourg (place fortifiee)<span class="n">2 795</span></label><div class="fam" data-fam="8" title="Tout activer/desactiver"><span class="s" style="background:#d95926"></span><b>Divers</b><span class="n">9 942&nbsp;· 1%</span></div><label class="l"><input type="checkbox" data-cat="suffixe_ou" data-family="8" checked><span class="s sw" data-detail="#948100" data-fam="#d95926" style="background:#948100"></span>-ou (finale vocalique)<span class="n">9 942</span></label>
+</div>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/pmtiles@3.0.6/dist/pmtiles.js"></script>
+<script>
+  var C_DETAIL = ["match", ["get", "cat"], "religieux", "#a67bd4", "cotier", "#00819c", "riverain", "#4a97e1", "breton", "#1c8bb9", "flamand", "#668736", "germanique_heim", "#369653", "germanique_ange", "#889e31", "germanique_dorf", "#8f6800", "germanique_bach", "#008461", "franc_court", "#5e7bd0", "villa_ville", "#994e93", "galloromain_gnac", "#af4a40", "galloromain_ac", "#b54e0b", "occitan_argues", "#ba5b8b", "galloromain_ieu", "#aa6412", "galloromain_y", "#b98918", "galloromain_an", "#d66c82", "gaulois_euil", "#53a768", "savoyard_alpin", "#8b85e1", "norrois_eur", "#00876f", "suffixe_uit", "#b476c7", "suffixe_ou", "#948100", "bourg", "#cc7d2a", "mont", "#aa5212", "val", "#00aba4", "mesnil", "#4a7f24", "complement_les", "#ab9104", "complement_en", "#c96ea9", "#e0e0e0"];
+  var C_FAM = ["match", ["get", "cat"], "religieux", "#9085e9", "cotier", "#3987e5", "riverain", "#3987e5", "breton", "#b76935", "flamand", "#008300", "germanique_heim", "#008300", "germanique_ange", "#008300", "germanique_dorf", "#008300", "germanique_bach", "#008300", "franc_court", "#008300", "villa_ville", "#e66767", "galloromain_gnac", "#e66767", "galloromain_ac", "#e66767", "occitan_argues", "#e66767", "galloromain_ieu", "#e66767", "galloromain_y", "#e66767", "galloromain_an", "#e66767", "gaulois_euil", "#b76935", "savoyard_alpin", "#d55181", "norrois_eur", "#199e70", "suffixe_uit", "#199e70", "suffixe_ou", "#d95926", "bourg", "#c98500", "mont", "#c98500", "val", "#c98500", "mesnil", "#199e70", "complement_les", "#3987e5", "complement_en", "#3987e5", "#8a8a8a"];
+  var OILOC = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {}, "geometry": {"type": "LineString", "coordinates": [[-1.05, 45.55], [-0.2, 45.7], [0.6, 45.75], [1.3, 45.9], [2.0, 46.0], [2.6, 45.85], [3.2, 45.7], [3.8, 45.55], [4.4, 45.45], [5.2, 45.35], [6.0, 45.3], [6.9, 45.25]]}}]};
+  var proto = new pmtiles.Protocol();
+  maplibregl.addProtocol('pmtiles', proto.tile);
+
+  var map = new maplibregl.Map({
+    container:'map', center:[2.4,46.6], zoom:5,
+    style:{ version:8,
+      sources:{
+        sombre:{type:'raster',tileSize:256,attribution:'&copy; Esri, HERE, Garmin',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}']},
+        gris:{type:'raster',tileSize:256,attribution:'&copy; Esri, HERE, Garmin',tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}']},
+        osm:{type:'raster',tileSize:256,attribution:'&copy; OpenStreetMap',tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png']},
+        lieuxdits:{type:'vector',url:'pmtiles://lieuxdits.pmtiles'},
+        oiloc:{type:'geojson',data:OILOC}
+      },
+      layers:[
+        {id:'fond',type:'background',paint:{'background-color':'#1a1a1a'}},
+        {id:'bg-sombre',type:'raster',source:'sombre'},
+        {id:'bg-gris',type:'raster',source:'gris',layout:{visibility:'none'}},
+        {id:'bg-osm',type:'raster',source:'osm',layout:{visibility:'none'}},
+        {id:'ld',type:'circle',source:'lieuxdits','source-layer':'lieuxdits',
+          paint:{'circle-color':C_DETAIL,
+            'circle-radius':['interpolate',['linear'],['zoom'],4,0.5,7,1.2,10,2.2,13,4],
+            'circle-opacity':0.85,'circle-stroke-width':0}},
+        {id:'oiloc',type:'line',source:'oiloc',layout:{visibility:'none'},
+          paint:{'line-color':'#ffe100','line-width':2.5,'line-dasharray':[2,1.5],'line-opacity':0.9}}
+      ]
+    }
+  });
+  map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+
+  document.querySelectorAll('#fonds button').forEach(function(b){b.onclick=function(){
+    document.querySelectorAll('#fonds button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');
+    var k=b.dataset.bg;['sombre','gris','osm'].forEach(function(x){map.setLayoutProperty('bg-'+x,'visibility',x===k?'visible':'none')});
+    document.body.style.background=(k==='sombre')?'#111':'#eee';};});
+
+  var mode='detail';
+  document.querySelectorAll('#modes button').forEach(function(b){b.onclick=function(){
+    document.querySelectorAll('#modes button').forEach(function(x){x.classList.remove('on')});b.classList.add('on');mode=b.dataset.mode;
+    map.setPaintProperty('ld','circle-color',mode==='fam'?C_FAM:C_DETAIL);
+    document.querySelectorAll('.sw').forEach(function(sw){sw.style.background=mode==='fam'?sw.dataset.fam:sw.dataset.detail});};});
+
+  document.getElementById('frontiere').onchange=function(){map.setLayoutProperty('oiloc','visibility',this.checked?'visible':'none')};
+
+  function actives(){return Array.from(document.querySelectorAll('.l input:checked')).map(function(i){return i.dataset.cat})}
+  function appliquer(){map.setFilter('ld',['in',['get','cat'],['literal',actives()]])}
+  document.querySelectorAll('.l input').forEach(function(i){i.addEventListener('change',appliquer)});
+  document.querySelectorAll('.fam').forEach(function(h){h.onclick=function(){
+    var fi=h.dataset.fam;var m=Array.from(document.querySelectorAll('.l input[data-family="'+fi+'"]'));
+    var t=!m.every(function(i){return i.checked});m.forEach(function(i){i.checked=t});appliquer();};});
+  document.getElementById('tout').onclick=function(){document.querySelectorAll('.l input').forEach(function(i){i.checked=true});appliquer()};
+  document.getElementById('rien').onclick=function(){document.querySelectorAll('.l input').forEach(function(i){i.checked=false});appliquer()};
+
+  map.on('click','ld',function(e){var p=e.features[0].properties;
+    new maplibregl.Popup().setLngLat(e.lngLat).setHTML('<b>'+p.nom+'</b><br>'+(p.cn||'—')).addTo(map);});
+  map.on('mouseenter','ld',function(){map.getCanvas().style.cursor='pointer'});
+  map.on('mouseleave','ld',function(){map.getCanvas().style.cursor=''});
+  map.on('load',appliquer);
+</script>
+</body>
+</html>

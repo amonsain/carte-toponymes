@@ -138,7 +138,7 @@ def main():
 </head>
 <body>
 <div id="map"></div>
-<div id="titre" class="panel">Toponymes de France<small>préfixes &amp; suffixes des communes — {fr(total)} communes</small></div>
+<div id="titre" class="panel">Toponymes de France<small>préfixes &amp; suffixes des communes — {fr(total)} communes · <a href="lieux-dits.html" style="color:#2171b5;text-decoration:none">→ lieux-dits</a></small></div>
 <div id="legende" class="panel">
   <div class="titrebar">Fond de carte</div>
   <div class="bar" id="fonds">

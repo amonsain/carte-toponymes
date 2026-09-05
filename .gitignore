@@ -24,3 +24,6 @@ france_toponymes.qgz
 web/rendu_qgis.png
 web/carte_gl.html
 web/carte_autonome.html
+
+# Donnees OSM lourdes (PBF, geojson, mbtiles) - garder hors du depot
+data/osm/
