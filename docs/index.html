@@ -6,17 +6,20 @@
 <title>Toponymes de France — carte GL</title>
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
 <style>
-  html,body{margin:0;height:100%;font-family:system-ui,sans-serif}
+  html,body{margin:0;height:100%;font-family:system-ui,sans-serif;background:#111}
   #map{position:absolute;inset:0}
   .panel{position:absolute;z-index:1;background:rgba(255,255,255,.96);
-    border-radius:8px;box-shadow:0 1px 8px rgba(0,0,0,.3)}
+    border-radius:8px;box-shadow:0 1px 8px rgba(0,0,0,.4)}
   #titre{top:10px;left:10px;padding:8px 12px;font-weight:600}
   #titre small{display:block;font-weight:400;color:#666}
   #legende{top:10px;right:10px;max-height:calc(100% - 20px);overflow:auto;
-    padding:8px 10px;width:330px;font-size:13px}
-  #legende .bar{display:flex;gap:6px;margin-bottom:6px}
-  #legende button{flex:1;padding:4px;font-size:12px;cursor:pointer;
+    padding:8px 10px;width:340px;font-size:13px}
+  .bar{display:flex;gap:6px;margin-bottom:6px}
+  .bar button{flex:1;padding:4px;font-size:12px;cursor:pointer;
     border:1px solid #ccc;border-radius:5px;background:#f7f7f7}
+  .bar button.on{background:#333;color:#fff;border-color:#333}
+  .titrebar{font-size:11px;text-transform:uppercase;letter-spacing:.04em;
+    color:#888;margin:8px 0 3px}
   .l{display:flex;align-items:center;margin:1px 0;line-height:1.35;cursor:pointer;
     padding:2px 3px;border-radius:4px}
   .l:hover{background:#f0f0f0}
@@ -30,6 +33,13 @@
 <div id="map"></div>
 <div id="titre" class="panel">Toponymes de France<small>préfixes &amp; suffixes des communes</small></div>
 <div id="legende" class="panel">
+  <div class="titrebar">Fond de carte</div>
+  <div class="bar" id="fonds">
+    <button data-bg="sombre" class="on">Sombre</button>
+    <button data-bg="gris">Gris</button>
+    <button data-bg="osm">OSM</button>
+  </div>
+  <div class="titrebar">Suffixes / préfixes</div>
   <div class="bar"><button id="tout">Tout</button><button id="rien">Aucun</button></div>
   <label class="l"><input type="checkbox" data-cat="religieux" checked><span class="s" style="background:#7b3294"></span>Saint- / Sainte- (hagiotoponyme)</label><label class="l"><input type="checkbox" data-cat="cotier" checked><span class="s" style="background:#1f9fbf"></span>-sur-Mer (littoral)</label><label class="l"><input type="checkbox" data-cat="riverain" checked><span class="s" style="background:#74add1"></span>-sur- ... (au bord d'un cours d'eau)</label><label class="l"><input type="checkbox" data-cat="germanique_heim" checked><span class="s" style="background:#1a9850"></span>-heim / -willer / -weiler (germanique)</label><label class="l"><input type="checkbox" data-cat="germanique_ange" checked><span class="s" style="background:#006837"></span>-ange / -ing(en) (germanique)</label><label class="l"><input type="checkbox" data-cat="germanique_dorf" checked><span class="s" style="background:#4d4d4d"></span>-dorf (village, germanique)</label><label class="l"><input type="checkbox" data-cat="franc_court" checked><span class="s" style="background:#08519c"></span>-court (domaine franc, curtis)</label><label class="l"><input type="checkbox" data-cat="villa_ville" checked><span class="s" style="background:#2171b5"></span>-ville (villa / domaine)</label><label class="l"><input type="checkbox" data-cat="galloromain_gnac" checked><span class="s" style="background:#99000d"></span>-gnac (gallo-romain -aniacum, Sud)</label><label class="l"><input type="checkbox" data-cat="galloromain_ac" checked><span class="s" style="background:#b2182b"></span>-ac / -acq (gallo-romain -acum, Sud)</label><label class="l"><input type="checkbox" data-cat="occitan_argues" checked><span class="s" style="background:#ae017e"></span>-argues (occitan -anicum, Languedoc)</label><label class="l"><input type="checkbox" data-cat="galloromain_ieu" checked><span class="s" style="background:#fdae61"></span>-ieu(x) (-acum, franco-provencal)</label><label class="l"><input type="checkbox" data-cat="galloromain_y" checked><span class="s" style="background:#f46d43"></span>-y / -ay / -e (-acum, Nord)</label><label class="l"><input type="checkbox" data-cat="galloromain_an" checked><span class="s" style="background:#c51b7d"></span>-an / -ans / -ens (-anum)</label><label class="l"><input type="checkbox" data-cat="savoyard_alpin" checked><span class="s" style="background:#6a3d9a"></span>-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)</label><label class="l"><input type="checkbox" data-cat="norrois_eur" checked><span class="s" style="background:#35978f"></span>-eur / -fleur (norrois, Normandie)</label><label class="l"><input type="checkbox" data-cat="suffixe_uit" checked><span class="s" style="background:#542788"></span>-uit / -thuit (essart, Normandie)</label><label class="l"><input type="checkbox" data-cat="suffixe_ou" checked><span class="s" style="background:#7fbc41"></span>-ou (finale vocalique)</label><label class="l"><input type="checkbox" data-cat="bourg" checked><span class="s" style="background:#fee08b"></span>-bourg (place fortifiee)</label><label class="l"><input type="checkbox" data-cat="mont" checked><span class="s" style="background:#8c510a"></span>-mont (relief)</label><label class="l"><input type="checkbox" data-cat="val" checked><span class="s" style="background:#80cdc1"></span>-val / -vaux (vallee)</label><label class="l"><input type="checkbox" data-cat="mesnil" checked><span class="s" style="background:#bf812d"></span>-mesnil / -menil (domaine rural, Normandie)</label><label class="l"><input type="checkbox" data-cat="complement_les" checked><span class="s" style="background:#dfc27d"></span>-lès- / -les- (aupres de)</label><label class="l"><input type="checkbox" data-cat="complement_en" checked><span class="s" style="background:#bc80bd"></span>-en- ... (dans le pays de)</label><label class="l"><input type="checkbox" data-cat="autre" checked><span class="s" style="background:#e0e0e0"></span>Autre</label>
 </div>
@@ -45,28 +55,48 @@ var COMMUNES = {"type":"FeatureCollection","features":[{"type":"Feature","geomet
     style: {
       version: 8,
       sources: {
-        osm: { type:'raster', tileSize:256,
-          tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'],
-          attribution:'&copy; OpenStreetMap' },
+        sombre: { type:'raster', tileSize:256, attribution:'&copy; Esri, HERE, Garmin',
+          tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}'] },
+        gris: { type:'raster', tileSize:256, attribution:'&copy; Esri, HERE, Garmin',
+          tiles:['https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'] },
+        osm: { type:'raster', tileSize:256, attribution:'&copy; OpenStreetMap',
+          tiles:['https://tile.openstreetmap.org/{z}/{x}/{y}.png'] },
         communes: { type:'geojson', data: COMMUNES }
       },
       layers: [
-        { id:'osm', type:'raster', source:'osm' },
+        { id:'fond', type:'background', paint:{'background-color':'#1a1a1a'} },
+        { id:'bg-sombre', type:'raster', source:'sombre' },
+        { id:'bg-gris', type:'raster', source:'gris', layout:{visibility:'none'} },
+        { id:'bg-osm', type:'raster', source:'osm', layout:{visibility:'none'} },
         { id:'communes-fill', type:'fill', source:'communes',
           paint: {
             'fill-color': COULEUR,
-            'fill-opacity': ['case', ['==', ['get','cat'], 'autre'], 0.12, 0.82]
+            'fill-opacity': ['case', ['==', ['get','cat'], 'autre'], 0.10, 0.88]
           } },
         { id:'communes-line', type:'line', source:'communes',
-          paint: { 'line-color':'#ffffff', 'line-width':0.15 } }
+          paint: { 'line-color':'#ffffff', 'line-width':0.12, 'line-opacity':0.35 } }
       ]
     }
   });
   map.addControl(new maplibregl.NavigationControl(), 'bottom-right');
 
+  // Selecteur de fond
+  document.querySelectorAll('#fonds button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('#fonds button').forEach(function(x){x.classList.remove('on')});
+      b.classList.add('on');
+      var choix = b.dataset.bg;
+      ['sombre','gris','osm'].forEach(function(k){
+        map.setLayoutProperty('bg-'+k, 'visibility', k===choix ? 'visible':'none');
+      });
+      document.getElementById('fond').style; // no-op
+      document.body.style.background = (choix==='gris'||choix==='osm') ? '#eee' : '#111';
+    });
+  });
+
   // Filtrage instantane (GPU) selon les cases cochees
   function actives(){
-    return Array.from(document.querySelectorAll('#legende input:checked'))
+    return Array.from(document.querySelectorAll('#legende .l input:checked'))
       .map(function(i){return i.dataset.cat});
   }
   function appliquer(){
@@ -74,15 +104,15 @@ var COMMUNES = {"type":"FeatureCollection","features":[{"type":"Feature","geomet
     map.setFilter('communes-fill', f);
     map.setFilter('communes-line', f);
   }
-  document.querySelectorAll('#legende input').forEach(function(i){
+  document.querySelectorAll('#legende .l input').forEach(function(i){
     i.addEventListener('change', appliquer);
   });
   document.getElementById('tout').onclick = function(){
-    document.querySelectorAll('#legende input').forEach(function(i){i.checked=true});
+    document.querySelectorAll('#legende .l input').forEach(function(i){i.checked=true});
     appliquer();
   };
   document.getElementById('rien').onclick = function(){
-    document.querySelectorAll('#legende input').forEach(function(i){i.checked=false});
+    document.querySelectorAll('#legende .l input').forEach(function(i){i.checked=false});
     appliquer();
   };
 
