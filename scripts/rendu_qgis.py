@@ -7,17 +7,19 @@
 
 A lancer avec le Python embarque de QGIS (voir scripts/rendre.sh).
 """
+import json
 import os
 from qgis.core import (
     QgsApplication, QgsVectorLayer, QgsRasterLayer, QgsProject,
     QgsCoordinateReferenceSystem, QgsRectangle, QgsMapSettings,
     QgsMapRendererParallelJob, QgsCoordinateTransform,
 )
-from qgis.PyQt.QtCore import QSize
-from qgis.PyQt.QtGui import QColor
+from qgis.PyQt.QtCore import QSize, QRectF, Qt
+from qgis.PyQt.QtGui import QColor, QPainter, QFont
 
 PREFIX = "/Users/augustin/Applications/QGIS.app/Contents/MacOS"
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+CONFIG = os.path.join(BASE, "config", "categories.json")
 GEOJSON = os.path.join(BASE, "data", "communes_classees.geojson")
 QML = os.path.join(BASE, "styles", "communes.qml")
 QGZ = os.path.join(BASE, "france_toponymes.qgz")
@@ -25,6 +27,36 @@ PNG = os.path.join(BASE, "web", "rendu_qgis.png")
 
 XYZ = ("type=xyz&url=https://tile.openstreetmap.org/"
        "{z}/{x}/{y}.png&zmax=19&zmin=0")
+
+
+def dessiner_legende(image, cats):
+    """Peint la legende (hors 'Autre') en haut a gauche de l'image."""
+    entrees = [c for c in cats if c["type"] != "defaut"]
+    pad, sw, gap, lh = 24, 30, 12, 40
+    largeur, entete = 600, 46
+    hauteur = pad * 2 + entete + len(entrees) * lh
+    p = QPainter(image)
+    p.setRenderHint(QPainter.Antialiasing)
+    p.setBrush(QColor(255, 255, 255, 235))
+    p.setPen(QColor(170, 170, 170))
+    p.drawRoundedRect(QRectF(24, 24, largeur, hauteur), 12, 12)
+    titre = QFont("Helvetica", 21)
+    titre.setBold(True)
+    p.setFont(titre)
+    p.setPen(QColor(25, 25, 25))
+    p.drawText(QRectF(24 + pad, 24 + pad, largeur - pad, entete),
+               Qt.AlignLeft | Qt.AlignVCenter, "Suffixes & prefixes toponymiques")
+    p.setFont(QFont("Helvetica", 17))
+    y = 24 + pad + entete
+    for c in entrees:
+        p.setBrush(QColor(c["couleur"]))
+        p.setPen(QColor(120, 120, 120))
+        p.drawRoundedRect(QRectF(24 + pad, y + 4, sw, sw - 8), 4, 4)
+        p.setPen(QColor(25, 25, 25))
+        p.drawText(QRectF(24 + pad + sw + gap, y, largeur - pad - sw - gap, lh),
+                   Qt.AlignLeft | Qt.AlignVCenter, c["nom"])
+        y += lh
+    p.end()
 
 
 def main():
@@ -72,8 +104,14 @@ def main():
     job = QgsMapRendererParallelJob(ms)
     job.start()
     job.waitForFinished()
+    image = job.renderedImage()
+
+    with open(CONFIG, encoding="utf-8") as f:
+        cats = json.load(f)["categories"]
+    dessiner_legende(image, cats)
+
     os.makedirs(os.path.dirname(PNG), exist_ok=True)
-    job.renderedImage().save(PNG)
+    image.save(PNG)
     print(f"Rendu PNG ecrit : {PNG}")
 
     qgs.exitQgis()

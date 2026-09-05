@@ -50,7 +50,7 @@ def classer(nom, regles):
     for id_, _nom_cat, type_, motif in regles:
         if type_ == "defaut":
             return id_
-        if type_ == "prefixe" and motif.search(nom_min):
+        if type_ in ("prefixe", "complement") and motif.search(nom_min):
             return id_
         if type_ == "suffixe" and motif.search(rad):
             return id_

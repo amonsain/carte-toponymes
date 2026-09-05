@@ -1,12 +1,26 @@
 {
-  "_description": "Regles de classement toponymique des communes de France. Ordre = priorite : la premiere regle qui correspond gagne. 'type' vaut 'prefixe' (teste sur le nom complet) ou 'suffixe' (teste sur le radical, c.-a-d. le premier mot significatif du nom). Les motifs sont des expressions regulieres Python, appliquees sur le nom en minuscules (accents conserves).",
+  "_description": "Regles de classement toponymique des communes de France. Ordre = priorite : la premiere regle qui correspond gagne. 'type' vaut 'prefixe' (teste sur le nom complet, au debut), 'complement' (teste sur le nom complet, motif libre), 'suffixe' (teste sur le radical = premier mot significatif du nom) ou 'defaut'. Les motifs sont des expressions regulieres Python, appliquees sur le nom en minuscules (accents conserves).",
   "categories": [
     {
       "id": "religieux",
-      "nom": "Saint / Sainte (hagiotoponyme)",
+      "nom": "Saint- / Sainte- (hagiotoponyme)",
       "couleur": "#7b3294",
       "type": "prefixe",
       "motif": "^(saint|sainte|st|ste)[\\s-]"
+    },
+    {
+      "id": "cotier",
+      "nom": "-sur-Mer (littoral)",
+      "couleur": "#1f9fbf",
+      "type": "complement",
+      "motif": "sur[\\s-]mer$"
+    },
+    {
+      "id": "riverain",
+      "nom": "-sur- ... (au bord d'un cours d'eau)",
+      "couleur": "#74add1",
+      "type": "complement",
+      "motif": "[\\s-]sur[\\s-]"
     },
     {
       "id": "germanique_heim",
@@ -63,6 +77,27 @@
       "couleur": "#c51b7d",
       "type": "suffixe",
       "motif": "(an|ans|ens)$"
+    },
+    {
+      "id": "norrois_eur",
+      "nom": "-eur / -fleur (norrois, Normandie)",
+      "couleur": "#35978f",
+      "type": "suffixe",
+      "motif": "(eur|fleur)$"
+    },
+    {
+      "id": "suffixe_uit",
+      "nom": "-uit / -thuit (essart, Normandie)",
+      "couleur": "#542788",
+      "type": "suffixe",
+      "motif": "(uit)$"
+    },
+    {
+      "id": "suffixe_ou",
+      "nom": "-ou (finale vocalique)",
+      "couleur": "#7fbc41",
+      "type": "suffixe",
+      "motif": "(ou)$"
     },
     {
       "id": "bourg",
