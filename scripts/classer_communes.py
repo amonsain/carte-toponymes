@@ -31,7 +31,8 @@ def charger_regles(chemin):
     regles = []
     for c in cats:
         motif = re.compile(c["motif"]) if c["motif"] else None
-        regles.append((c["id"], c["nom"], c["type"], motif))
+        depts = set(c["departements"]) if c.get("departements") else None
+        regles.append((c["id"], c["nom"], c["type"], motif, depts))
     return regles
 
 
@@ -44,12 +45,14 @@ def radical(nom):
     return nom.lower()
 
 
-def classer(nom, regles):
+def classer(nom, regles, dept=None):
     nom_min = nom.lower()
     rad = radical(nom)
-    for id_, _nom_cat, type_, motif in regles:
+    for id_, _nom_cat, type_, motif, depts in regles:
         if type_ == "defaut":
             return id_
+        if depts is not None and dept not in depts:
+            continue  # regle limitee a certains departements
         if type_ in ("prefixe", "complement") and motif.search(nom_min):
             return id_
         if type_ == "suffixe" and motif.search(rad):
@@ -65,7 +68,7 @@ def main():
         )
 
     regles = charger_regles(CONFIG)
-    libelles = {id_: nom for id_, nom, _t, _m in regles}
+    libelles = {id_: nom for id_, nom, _t, _m, _d in regles}
 
     print(f"Lecture de {ENTREE} ...")
     with open(ENTREE, encoding="utf-8") as f:
@@ -75,7 +78,8 @@ def main():
     for feature in geo.get("features", []):
         props = feature.setdefault("properties", {})
         nom = props.get("nom", "") or ""
-        cat = classer(nom, regles)
+        dept = (props.get("code", "") or "")[:2]
+        cat = classer(nom, regles, dept)
         props["categorie"] = cat
         props["categorie_nom"] = libelles[cat]
         compte[cat] += 1
@@ -86,7 +90,7 @@ def main():
 
     total = sum(compte.values())
     print(f"\n{total} communes classees :\n")
-    for id_, nom, _t, _m in regles:
+    for id_, nom, _t, _m, _d in regles:
         n = compte.get(id_, 0)
         pct = (n * 100 / total) if total else 0
         print(f"  {nom:<45} {n:>6}  ({pct:4.1f} %)")

@@ -104,7 +104,8 @@
       "nom": "-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)",
       "couleur": "#8b85e1",
       "type": "suffixe",
-      "motif": "(az|oz|ex)$|(?<!cro)ix$"
+      "motif": "(az|oz)$|[bcdfghjklmnpqrstvwxz](ex|ix)$",
+      "departements": ["01", "25", "26", "38", "39", "42", "69", "73", "74"]
     },
     {
       "id": "norrois_eur",
