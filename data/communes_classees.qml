@@ -7,20 +7,26 @@
       <category value="riverain" symbol="2" label="-sur- ... (au bord d'un cours d'eau)" render="true"/>
       <category value="germanique_heim" symbol="3" label="-heim / -willer / -weiler (germanique)" render="true"/>
       <category value="germanique_ange" symbol="4" label="-ange / -ing(en) (germanique)" render="true"/>
-      <category value="franc_court" symbol="5" label="-court (domaine franc, curtis)" render="true"/>
-      <category value="villa_ville" symbol="6" label="-ville (villa / domaine)" render="true"/>
-      <category value="galloromain_ac" symbol="7" label="-ac / -acq (gallo-romain -acum, Sud)" render="true"/>
-      <category value="galloromain_ieu" symbol="8" label="-ieu(x) (-acum, franco-provencal)" render="true"/>
-      <category value="galloromain_y" symbol="9" label="-y / -ay / -e (-acum, Nord)" render="true"/>
-      <category value="galloromain_an" symbol="10" label="-an / -ans / -ens (-anum)" render="true"/>
-      <category value="norrois_eur" symbol="11" label="-eur / -fleur (norrois, Normandie)" render="true"/>
-      <category value="suffixe_uit" symbol="12" label="-uit / -thuit (essart, Normandie)" render="true"/>
-      <category value="suffixe_ou" symbol="13" label="-ou (finale vocalique)" render="true"/>
-      <category value="bourg" symbol="14" label="-bourg (place fortifiee)" render="true"/>
-      <category value="mont" symbol="15" label="-mont (relief)" render="true"/>
-      <category value="val" symbol="16" label="-val / -vaux (vallee)" render="true"/>
-      <category value="mesnil" symbol="17" label="-mesnil / -menil (domaine rural, Normandie)" render="true"/>
-      <category value="autre" symbol="18" label="Autre" render="true"/>
+      <category value="germanique_dorf" symbol="5" label="-dorf (village, germanique)" render="true"/>
+      <category value="franc_court" symbol="6" label="-court (domaine franc, curtis)" render="true"/>
+      <category value="villa_ville" symbol="7" label="-ville (villa / domaine)" render="true"/>
+      <category value="galloromain_gnac" symbol="8" label="-gnac (gallo-romain -aniacum, Sud)" render="true"/>
+      <category value="galloromain_ac" symbol="9" label="-ac / -acq (gallo-romain -acum, Sud)" render="true"/>
+      <category value="occitan_argues" symbol="10" label="-argues (occitan -anicum, Languedoc)" render="true"/>
+      <category value="galloromain_ieu" symbol="11" label="-ieu(x) (-acum, franco-provencal)" render="true"/>
+      <category value="galloromain_y" symbol="12" label="-y / -ay / -e (-acum, Nord)" render="true"/>
+      <category value="galloromain_an" symbol="13" label="-an / -ans / -ens (-anum)" render="true"/>
+      <category value="savoyard_alpin" symbol="14" label="-az / -oz (savoyard, Alpes ; -z muet)" render="true"/>
+      <category value="norrois_eur" symbol="15" label="-eur / -fleur (norrois, Normandie)" render="true"/>
+      <category value="suffixe_uit" symbol="16" label="-uit / -thuit (essart, Normandie)" render="true"/>
+      <category value="suffixe_ou" symbol="17" label="-ou (finale vocalique)" render="true"/>
+      <category value="bourg" symbol="18" label="-bourg (place fortifiee)" render="true"/>
+      <category value="mont" symbol="19" label="-mont (relief)" render="true"/>
+      <category value="val" symbol="20" label="-val / -vaux (vallee)" render="true"/>
+      <category value="mesnil" symbol="21" label="-mesnil / -menil (domaine rural, Normandie)" render="true"/>
+      <category value="complement_les" symbol="22" label="-lès- / -les- (aupres de)" render="true"/>
+      <category value="complement_en" symbol="23" label="-en- ... (dans le pays de)" render="true"/>
+      <category value="autre" symbol="24" label="Autre" render="true"/>
     </categories>
     <symbols>
       <symbol type="fill" name="0" alpha="1" clip_to_extent="1" force_rhr="0">
@@ -86,7 +92,7 @@
       <symbol type="fill" name="5" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="8,81,156,255"/>
+            <Option type="QString" name="color" value="77,77,77,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -98,7 +104,7 @@
       <symbol type="fill" name="6" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="33,113,181,255"/>
+            <Option type="QString" name="color" value="8,81,156,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -110,7 +116,7 @@
       <symbol type="fill" name="7" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="178,24,43,255"/>
+            <Option type="QString" name="color" value="33,113,181,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -122,7 +128,7 @@
       <symbol type="fill" name="8" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="253,174,97,255"/>
+            <Option type="QString" name="color" value="153,0,13,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -134,7 +140,7 @@
       <symbol type="fill" name="9" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="244,109,67,255"/>
+            <Option type="QString" name="color" value="178,24,43,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -146,7 +152,7 @@
       <symbol type="fill" name="10" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="197,27,125,255"/>
+            <Option type="QString" name="color" value="174,1,126,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -158,7 +164,7 @@
       <symbol type="fill" name="11" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="53,151,143,255"/>
+            <Option type="QString" name="color" value="253,174,97,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -170,7 +176,7 @@
       <symbol type="fill" name="12" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="84,39,136,255"/>
+            <Option type="QString" name="color" value="244,109,67,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -182,7 +188,7 @@
       <symbol type="fill" name="13" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="127,188,65,255"/>
+            <Option type="QString" name="color" value="197,27,125,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -194,7 +200,7 @@
       <symbol type="fill" name="14" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="254,224,139,255"/>
+            <Option type="QString" name="color" value="106,61,154,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -206,7 +212,7 @@
       <symbol type="fill" name="15" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="140,81,10,255"/>
+            <Option type="QString" name="color" value="53,151,143,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -218,7 +224,7 @@
       <symbol type="fill" name="16" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="128,205,193,255"/>
+            <Option type="QString" name="color" value="84,39,136,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -230,7 +236,7 @@
       <symbol type="fill" name="17" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="191,129,45,255"/>
+            <Option type="QString" name="color" value="127,188,65,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -240,6 +246,78 @@
         </layer>
       </symbol>
       <symbol type="fill" name="18" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="254,224,139,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="19" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="140,81,10,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="20" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="128,205,193,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="21" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="191,129,45,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="22" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="223,194,125,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="23" alpha="1" clip_to_extent="1" force_rhr="0">
+        <layer class="SimpleFill" locked="0" pass="0" enabled="1">
+          <Option type="Map">
+            <Option type="QString" name="color" value="188,128,189,255"/>
+            <Option type="QString" name="style" value="solid"/>
+            <Option type="QString" name="outline_style" value="solid"/>
+            <Option type="QString" name="outline_color" value="255,255,255,60"/>
+            <Option type="QString" name="outline_width" value="0.05"/>
+            <Option type="QString" name="outline_width_unit" value="MM"/>
+          </Option>
+        </layer>
+      </symbol>
+      <symbol type="fill" name="24" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
             <Option type="QString" name="color" value="224,224,224,255"/>

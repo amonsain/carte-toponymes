@@ -37,6 +37,13 @@
       "motif": "(ange|inge|ingen|ing)$"
     },
     {
+      "id": "germanique_dorf",
+      "nom": "-dorf (village, germanique)",
+      "couleur": "#4d4d4d",
+      "type": "suffixe",
+      "motif": "(dorf)$"
+    },
+    {
       "id": "franc_court",
       "nom": "-court (domaine franc, curtis)",
       "couleur": "#08519c",
@@ -51,11 +58,25 @@
       "motif": "(ville)$"
     },
     {
+      "id": "galloromain_gnac",
+      "nom": "-gnac (gallo-romain -aniacum, Sud)",
+      "couleur": "#99000d",
+      "type": "suffixe",
+      "motif": "(gnac)$"
+    },
+    {
       "id": "galloromain_ac",
       "nom": "-ac / -acq (gallo-romain -acum, Sud)",
       "couleur": "#b2182b",
       "type": "suffixe",
       "motif": "(ac|acq)$"
+    },
+    {
+      "id": "occitan_argues",
+      "nom": "-argues (occitan -anicum, Languedoc)",
+      "couleur": "#ae017e",
+      "type": "suffixe",
+      "motif": "(argues|argue)$"
     },
     {
       "id": "galloromain_ieu",
@@ -77,6 +98,13 @@
       "couleur": "#c51b7d",
       "type": "suffixe",
       "motif": "(an|ans|ens)$"
+    },
+    {
+      "id": "savoyard_alpin",
+      "nom": "-az / -oz (savoyard, Alpes ; -z muet)",
+      "couleur": "#6a3d9a",
+      "type": "suffixe",
+      "motif": "(az|oz)$"
     },
     {
       "id": "norrois_eur",
@@ -126,6 +154,20 @@
       "couleur": "#bf812d",
       "type": "suffixe",
       "motif": "(mesnil|ménil|menil)$"
+    },
+    {
+      "id": "complement_les",
+      "nom": "-lès- / -les- (aupres de)",
+      "couleur": "#dfc27d",
+      "type": "complement",
+      "motif": "[\\s-](lès|lez|les)[\\s-]"
+    },
+    {
+      "id": "complement_en",
+      "nom": "-en- ... (dans le pays de)",
+      "couleur": "#bc80bd",
+      "type": "complement",
+      "motif": "[\\s-]en[\\s-]"
     },
     {
       "id": "autre",
