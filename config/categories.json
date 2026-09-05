@@ -9,6 +9,13 @@
       "motif": "^(saint|sainte|st|ste)[\\s-]"
     },
     {
+      "id": "prefixe_ville",
+      "nom": "Ville- (ville neuve, bastide)",
+      "couleur": "#c85fd6",
+      "type": "prefixe",
+      "motif": "^ville(?!r)"
+    },
+    {
       "id": "cotier",
       "nom": "-sur-Mer (littoral)",
       "couleur": "#00819c",
@@ -125,11 +132,25 @@
       "motif": "(ieu|ieux)$"
     },
     {
+      "id": "galloromain_ay",
+      "nom": "-ay / -ey (-acum, Nord-Est)",
+      "couleur": "#ecc94b",
+      "type": "suffixe",
+      "motif": "(ay|ey)$"
+    },
+    {
+      "id": "galloromain_e",
+      "nom": "-é (-acum, Ouest)",
+      "couleur": "#e2542a",
+      "type": "suffixe",
+      "motif": "(é)$"
+    },
+    {
       "id": "galloromain_y",
-      "nom": "-y / -ay / -e (-acum, Nord)",
+      "nom": "-y (-acum, Bassin parisien)",
       "couleur": "#b98918",
       "type": "suffixe",
-      "motif": "(ay|ey|y|é)$"
+      "motif": "(y)$"
     },
     {
       "id": "galloromain_an",

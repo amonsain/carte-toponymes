@@ -41,8 +41,9 @@ def main():
     regles = charger_regles(CONFIG)
     lib = {i: n for i, n, _t, _m, _d in regles}
 
-    print(f"Lecture {RAW} ...")
-    raw = json.load(open(RAW, encoding="utf-8"))
+    src = RAW if os.path.exists(RAW) else OUT  # re-classement depuis le fichier classe si le brut a ete nettoye
+    print(f"Lecture {src} ...")
+    raw = json.load(open(src, encoding="utf-8"))
     feats = raw["features"]
     print(f"{len(feats)} points a classer ...")
 
@@ -53,7 +54,8 @@ def main():
         if not g or g.get("type") != "Point":
             continue
         lon, lat = g["coordinates"][0], g["coordinates"][1]
-        nom = feat["properties"].get("name", "") or ""
+        pr = feat["properties"]
+        nom = pr.get("name") or pr.get("nom") or ""
         d = dept_of(Point(lon, lat))
         cat = classer(nom, regles, d)
         compte[cat] += 1

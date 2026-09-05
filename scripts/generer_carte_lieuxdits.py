@@ -131,7 +131,7 @@ def main():
         {{id:'bg-osm',type:'raster',source:'osm',layout:{{visibility:'none'}}}},
         {{id:'ld',type:'circle',source:'lieuxdits','source-layer':'lieuxdits',
           paint:{{'circle-color':C_DETAIL,
-            'circle-radius':['interpolate',['linear'],['zoom'],4,1,7,2.4,10,4.4,13,8],
+            'circle-radius':['interpolate',['linear'],['zoom'],4,0.75,7,1.8,10,3.3,13,6],
             'circle-opacity':0.85,'circle-stroke-width':0}}}},
         {{id:'oiloc',type:'line',source:'oiloc',layout:{{visibility:'none'}},
           paint:{{'line-color':'#ffe100','line-width':2.5,'line-dasharray':[2,1.5],'line-opacity':0.9}}}}
