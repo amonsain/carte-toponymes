@@ -164,8 +164,8 @@ def main():
 <script>
   var COULEURS = {json.dumps(couleurs, ensure_ascii=False)};
   var map = L.map('map', {{preferCanvas:true}}).setView([46.6, 2.4], 6);
-  L.tileLayer('https://{{s}}.basemaps.cartocdn.com/light_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-    attribution:'&copy; OpenStreetMap, &copy; CARTO', subdomains:'abcd', maxZoom:19
+  L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+    attribution:'&copy; OpenStreetMap', maxZoom:19
   }}).addTo(map);
 
   function style(f){{

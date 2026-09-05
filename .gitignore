@@ -18,3 +18,7 @@ venv/
 # Sorties web generees
 web/communes.js
 web/index.html
+
+# Sorties QGIS generees
+france_toponymes.qgz
+web/rendu_qgis.png
