@@ -64,7 +64,8 @@
       "nom": "-ange / -ing(en) (germanique)",
       "couleur": "#889e31",
       "type": "suffixe",
-      "motif": "(ange|inge|ingen|ing)$"
+      "motif": "(ange|inge|ingen|ing)$",
+      "departements": ["08", "51", "52", "54", "55", "57", "59", "67", "68", "88", "90"]
     },
     {
       "id": "germanique_dorf",
