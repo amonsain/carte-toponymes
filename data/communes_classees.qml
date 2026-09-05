@@ -16,7 +16,7 @@
       <category value="galloromain_ieu" symbol="11" label="-ieu(x) (-acum, franco-provencal)" render="true"/>
       <category value="galloromain_y" symbol="12" label="-y / -ay / -e (-acum, Nord)" render="true"/>
       <category value="galloromain_an" symbol="13" label="-an / -ans / -ens (-anum)" render="true"/>
-      <category value="savoyard_alpin" symbol="14" label="-az / -oz (savoyard, Alpes ; -z muet)" render="true"/>
+      <category value="savoyard_alpin" symbol="14" label="-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)" render="true"/>
       <category value="norrois_eur" symbol="15" label="-eur / -fleur (norrois, Normandie)" render="true"/>
       <category value="suffixe_uit" symbol="16" label="-uit / -thuit (essart, Normandie)" render="true"/>
       <category value="suffixe_ou" symbol="17" label="-ou (finale vocalique)" render="true"/>

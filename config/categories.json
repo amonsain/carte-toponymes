@@ -101,10 +101,10 @@
     },
     {
       "id": "savoyard_alpin",
-      "nom": "-az / -oz (savoyard, Alpes ; -z muet)",
+      "nom": "-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)",
       "couleur": "#6a3d9a",
       "type": "suffixe",
-      "motif": "(az|oz)$"
+      "motif": "(az|oz|ex)$|(?<!cro)ix$"
     },
     {
       "id": "norrois_eur",
