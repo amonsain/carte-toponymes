@@ -83,9 +83,11 @@ def main():
         ftot = sum(counts.get(m, 0) for m in membres)
         pct = ftot * 100 / total if total else 0
         blocs.append(
-            f'<div class="fam" data-fam="{fi}" title="Tout activer/desactiver dans la famille">'
+            f'<div class="fam" data-fam="{fi}"><span class="caret">▾</span>'
+            f'<input type="checkbox" class="famchk" data-fam="{fi}" checked title="Tout activer/désactiver">'
             f'<span class="s" style="background:{fcol}"></span><b>{fnom}</b>'
-            f'<span class="n">{fr(ftot)}&nbsp;· {pct:.0f}%</span></div>')
+            f'<span class="n">{fr(ftot)}&nbsp;· {pct:.0f}%</span></div>'
+            f'<div class="fam-body" data-body="{fi}">')
         for m in membres:
             c = par_id[m]
             n = counts.get(m, 0)
@@ -94,6 +96,7 @@ def main():
                 f'<span class="s sw" data-detail="{coul_detail[m]}" data-fam="{fcol}" '
                 f'style="background:{coul_detail[m]}"></span>{c["nom"]}'
                 f'<span class="n">{fr(n)}</span></label>')
+        blocs.append('</div>')
     legende = "".join(blocs)
 
     oiloc_geo = {"type": "FeatureCollection", "features": [
@@ -106,11 +109,11 @@ def main():
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Toponymes de France — carte GL</title>
-<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/>
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <style>
   :root{{--bg:rgba(17,18,20,.72);--bd:rgba(255,255,255,.10);--tx:#eef0f2;--tx2:#9ba1a8;--tx3:#6a7077;--acc:#5b9dff}}
   *{{box-sizing:border-box}}
-  html,body{{margin:0;height:100%;background:#0d0e10;color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}}
+  html,body{{margin:0;height:100%;background:#0d0e10;color:var(--tx);font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;-webkit-font-smoothing:antialiased}}
   #map{{position:absolute;inset:0}}
   .panel{{position:absolute;z-index:1;background:var(--bg);color:var(--tx);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);border:1px solid var(--bd);border-radius:16px;box-shadow:0 12px 44px rgba(0,0,0,.55)}}
   #titre{{top:14px;left:14px;padding:13px 17px;max-width:290px}}
@@ -142,6 +145,17 @@ def main():
   .maplibregl-popup-tip{{border-top-color:#191a1d!important;border-bottom-color:#191a1d!important}}
   .maplibregl-ctrl-group{{background:var(--bg)!important;border:1px solid var(--bd)!important;box-shadow:0 6px 20px rgba(0,0,0,.5)!important}}
   .maplibregl-ctrl-group button{{filter:invert(1) hue-rotate(180deg)}}
+  #titre a{{display:inline-block;margin-top:10px;padding:4px 11px;background:rgba(91,157,255,.14);border:1px solid rgba(91,157,255,.32);border-radius:999px;font-size:11.5px}}
+  #titre a:hover{{background:rgba(91,157,255,.24);text-decoration:none}}
+  .caret{{font-size:9px;color:var(--tx3);width:11px;display:inline-block;transition:transform .2s;flex:0 0 auto}}
+  .fam.collapsed .caret{{transform:rotate(-90deg)}}
+  .fam-body.hidden{{display:none}}
+  .famchk{{accent-color:var(--acc);margin:0 4px 0 0;width:12px;height:12px;flex:0 0 auto}}
+  .panel{{animation:pin .5s cubic-bezier(.2,.75,.2,1) both}}
+  #legende{{animation-delay:.06s}} #credit{{animation-delay:.12s}}
+  @keyframes pin{{from{{opacity:0;transform:translateY(-8px)}}to{{opacity:1;transform:none}}}}
+  #credit{{bottom:12px;left:14px;padding:7px 13px;font-size:11px;color:var(--tx3);max-width:360px}}
+  #credit a{{color:var(--tx2);text-decoration:none}} #credit a:hover{{color:var(--tx)}}
 </style>
 </head>
 <body>
@@ -164,6 +178,7 @@ def main():
   <div class="bar"><button id="tout">Tout</button><button id="rien">Aucun</button></div>
   {legende}
 </div>
+<div id="credit" class="panel">Données&nbsp;: <a href="https://www.openstreetmap.org" target="_blank" rel="noopener">OpenStreetMap</a> · IGN — cartographie des préfixes &amp; suffixes toponymiques</div>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="communes.js"></script>
 <script>
@@ -240,12 +255,18 @@ def main():
   }}
   document.querySelectorAll('.l input').forEach(function(i){{ i.addEventListener('change',appliquer); }});
   document.querySelectorAll('.fam').forEach(function(h){{
-    h.onclick=function(){{
-      var fi=h.dataset.fam;
-      var membres=Array.from(document.querySelectorAll('.l input[data-family="'+fi+'"]'));
-      var cible=!membres.every(function(i){{return i.checked}});
-      membres.forEach(function(i){{i.checked=cible}}); appliquer();
-    }};
+    h.addEventListener('click',function(e){{
+      if(e.target.classList.contains('famchk'))return;
+      var fi=h.dataset.fam; h.classList.toggle('collapsed');
+      document.querySelector('.fam-body[data-body="'+fi+'"]').classList.toggle('hidden');
+    }});
+  }});
+  document.querySelectorAll('.famchk').forEach(function(c){{
+    c.addEventListener('change',function(){{
+      var fi=c.dataset.fam;
+      document.querySelectorAll('.l input[data-family="'+fi+'"]').forEach(function(i){{i.checked=c.checked}});
+      appliquer();
+    }});
   }});
   document.getElementById('tout').onclick=function(){{
     document.querySelectorAll('.l input').forEach(function(i){{i.checked=true}}); appliquer(); }};
