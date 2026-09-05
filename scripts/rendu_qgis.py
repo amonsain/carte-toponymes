@@ -25,8 +25,8 @@ QML = os.path.join(BASE, "styles", "communes.qml")
 QGZ = os.path.join(BASE, "france_toponymes.qgz")
 PNG = os.path.join(BASE, "web", "rendu_qgis.png")
 
-XYZ = ("type=xyz&url=https://tile.openstreetmap.org/"
-       "{z}/{x}/{y}.png&zmax=19&zmin=0")
+XYZ = ("type=xyz&url=https://server.arcgisonline.com/ArcGIS/rest/services/"
+       "Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}&zmax=16&zmin=0")
 
 
 def composer_avec_legende(carte, cats):
@@ -112,7 +112,7 @@ def main():
 
     ms = QgsMapSettings()
     ms.setLayers([communes, fond])          # communes au-dessus du fond
-    ms.setBackgroundColor(QColor(245, 245, 245))
+    ms.setBackgroundColor(QColor(26, 26, 26))
     ms.setOutputSize(QSize(1500, 1600))
     ms.setDestinationCrs(crs3857)
     ms.setExtent(extent)
