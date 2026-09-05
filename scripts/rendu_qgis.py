@@ -13,9 +13,15 @@ from qgis.core import (
     QgsApplication, QgsVectorLayer, QgsRasterLayer, QgsProject,
     QgsCoordinateReferenceSystem, QgsRectangle, QgsMapSettings,
     QgsMapRendererParallelJob, QgsCoordinateTransform,
+    QgsFeature, QgsGeometry, QgsPointXY,
 )
 from qgis.PyQt.QtCore import QSize, QRectF, Qt
 from qgis.PyQt.QtGui import QColor, QPainter, QFont, QImage
+
+# Ligne approximative de partage oil / oc (ouest -> est), lon/lat
+OILOC = [[-1.05, 45.55], [-0.2, 45.7], [0.6, 45.75], [1.3, 45.9], [2.0, 46.0],
+         [2.6, 45.85], [3.2, 45.7], [3.8, 45.55], [4.4, 45.45], [5.2, 45.35],
+         [6.0, 45.3], [6.9, 45.25]]
 
 PREFIX = "/Users/augustin/Applications/QGIS.app/Contents/MacOS"
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -97,11 +103,25 @@ def main():
     # Fond de carte
     fond = QgsRasterLayer(XYZ, "Fond CARTO", "wms")
 
+    # Frontiere oil / oc (ligne pointillee jaune)
+    ligne = QgsVectorLayer("LineString?crs=EPSG:4326", "oil-oc", "memory")
+    feat = QgsFeature()
+    feat.setGeometry(QgsGeometry.fromPolylineXY([QgsPointXY(x, y) for x, y in OILOC]))
+    ligne.dataProvider().addFeature(feat)
+    sym = ligne.renderer().symbol()
+    sym.setColor(QColor("#ffe100"))
+    sym.setWidth(0.9)
+    sl = sym.symbolLayer(0)
+    if hasattr(sl, "setPenStyle"):
+        sl.setPenStyle(Qt.DashLine)
+    ligne.triggerRepaint()
+
     crs3857 = QgsCoordinateReferenceSystem("EPSG:3857")
     proj = QgsProject.instance()
     proj.setCrs(crs3857)
     proj.addMapLayer(fond)
     proj.addMapLayer(communes)
+    proj.addMapLayer(ligne)
     proj.write(QGZ)
     print(f"Projet ecrit : {QGZ}")
 
@@ -111,7 +131,7 @@ def main():
     extent = xform.transformBoundingBox(QgsRectangle(-5.2, 41.2, 9.8, 51.2))
 
     ms = QgsMapSettings()
-    ms.setLayers([communes, fond])          # communes au-dessus du fond
+    ms.setLayers([ligne, communes, fond])   # ligne au-dessus, communes, fond
     ms.setBackgroundColor(QColor(26, 26, 26))
     ms.setOutputSize(QSize(1500, 1600))
     ms.setDestinationCrs(crs3857)

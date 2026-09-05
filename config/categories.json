@@ -67,7 +67,7 @@
     {
       "id": "galloromain_ac",
       "nom": "-ac / -acq (gallo-romain -acum, Sud)",
-      "couleur": "#d3773e",
+      "couleur": "#b54e0b",
       "type": "suffixe",
       "motif": "(ac|acq)$"
     },
@@ -81,14 +81,14 @@
     {
       "id": "galloromain_ieu",
       "nom": "-ieu(x) (-acum, franco-provencal)",
-      "couleur": "#b77600",
+      "couleur": "#aa6412",
       "type": "suffixe",
       "motif": "(ieu|ieux)$"
     },
     {
       "id": "galloromain_y",
       "nom": "-y / -ay / -e (-acum, Nord)",
-      "couleur": "#c2603d",
+      "couleur": "#b98918",
       "type": "suffixe",
       "motif": "(ay|ey|y|é)$"
     },

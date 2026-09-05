@@ -140,7 +140,7 @@
       <symbol type="fill" name="9" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="211,119,62,255"/>
+            <Option type="QString" name="color" value="181,78,11,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -164,7 +164,7 @@
       <symbol type="fill" name="11" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="183,118,0,255"/>
+            <Option type="QString" name="color" value="170,100,18,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
@@ -176,7 +176,7 @@
       <symbol type="fill" name="12" alpha="1" clip_to_extent="1" force_rhr="0">
         <layer class="SimpleFill" locked="0" pass="0" enabled="1">
           <Option type="Map">
-            <Option type="QString" name="color" value="194,96,61,255"/>
+            <Option type="QString" name="color" value="185,137,24,255"/>
             <Option type="QString" name="style" value="solid"/>
             <Option type="QString" name="outline_style" value="solid"/>
             <Option type="QString" name="outline_color" value="255,255,255,60"/>
