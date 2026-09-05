@@ -22,3 +22,4 @@ web/index.html
 # Sorties QGIS generees
 france_toponymes.qgz
 web/rendu_qgis.png
+web/carte_gl.html
