@@ -23,6 +23,29 @@
       "motif": "[\\s-]sur[\\s-]"
     },
     {
+      "id": "breton",
+      "nom": "Breton (Plou-, Ker-, Lan-, Tré-, -ec)",
+      "couleur": "#1c8bb9",
+      "type": "complement",
+      "motif": "^(plou|ploe|plu|ple|plé|ker|lan|tré|tre|loc|lok|guic)|(ec|eg)$",
+      "departements": [
+        "22",
+        "29",
+        "56"
+      ]
+    },
+    {
+      "id": "flamand",
+      "nom": "Flamand (-ghem, -becque, -hout)",
+      "couleur": "#668736",
+      "type": "complement",
+      "motif": "(ghem|inghem|hem|becque|kerque|brouck|houck|voorde|hout|zeele)$",
+      "departements": [
+        "59",
+        "62"
+      ]
+    },
+    {
       "id": "germanique_heim",
       "nom": "-heim / -willer / -weiler (germanique)",
       "couleur": "#369653",
@@ -42,6 +65,22 @@
       "couleur": "#8f6800",
       "type": "suffixe",
       "motif": "(dorf)$"
+    },
+    {
+      "id": "germanique_bach",
+      "nom": "-bach (ruisseau, germanique)",
+      "couleur": "#008461",
+      "type": "suffixe",
+      "motif": "(bach)$",
+      "departements": [
+        "54",
+        "55",
+        "57",
+        "67",
+        "68",
+        "88",
+        "90"
+      ]
     },
     {
       "id": "franc_court",
@@ -100,12 +139,29 @@
       "motif": "(an|ans|ens)$"
     },
     {
+      "id": "gaulois_euil",
+      "nom": "-euil / -eul (gaulois -ialo, clairière)",
+      "couleur": "#53a768",
+      "type": "suffixe",
+      "motif": "(euil|ueil|oeuil|eul)$"
+    },
+    {
       "id": "savoyard_alpin",
       "nom": "-az / -oz / -ex / -ix (savoyard, Alpes ; finale muette)",
       "couleur": "#8b85e1",
       "type": "suffixe",
       "motif": "(az|oz)$|[bcdfghjklmnpqrstvwxz](ex|ix)$",
-      "departements": ["01", "25", "26", "38", "39", "42", "69", "73", "74"]
+      "departements": [
+        "01",
+        "25",
+        "26",
+        "38",
+        "39",
+        "42",
+        "69",
+        "73",
+        "74"
+      ]
     },
     {
       "id": "norrois_eur",
