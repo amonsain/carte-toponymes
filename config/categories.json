@@ -1,0 +1,103 @@
+{
+  "_description": "Regles de classement toponymique des communes de France. Ordre = priorite : la premiere regle qui correspond gagne. 'type' vaut 'prefixe' (teste sur le nom complet) ou 'suffixe' (teste sur le radical, c.-a-d. le premier mot significatif du nom). Les motifs sont des expressions regulieres Python, appliquees sur le nom en minuscules (accents conserves).",
+  "categories": [
+    {
+      "id": "religieux",
+      "nom": "Saint / Sainte (hagiotoponyme)",
+      "couleur": "#7b3294",
+      "type": "prefixe",
+      "motif": "^(saint|sainte|st|ste)[\\s-]"
+    },
+    {
+      "id": "germanique_heim",
+      "nom": "-heim / -willer / -weiler (germanique)",
+      "couleur": "#1a9850",
+      "type": "suffixe",
+      "motif": "(heim|willer|weiler|viller|villers)$"
+    },
+    {
+      "id": "germanique_ange",
+      "nom": "-ange / -ing(en) (germanique)",
+      "couleur": "#006837",
+      "type": "suffixe",
+      "motif": "(ange|inge|ingen|ing)$"
+    },
+    {
+      "id": "franc_court",
+      "nom": "-court (domaine franc, curtis)",
+      "couleur": "#08519c",
+      "type": "suffixe",
+      "motif": "(court|curt)$"
+    },
+    {
+      "id": "villa_ville",
+      "nom": "-ville (villa / domaine)",
+      "couleur": "#2171b5",
+      "type": "suffixe",
+      "motif": "(ville)$"
+    },
+    {
+      "id": "galloromain_ac",
+      "nom": "-ac / -acq (gallo-romain -acum, Sud)",
+      "couleur": "#b2182b",
+      "type": "suffixe",
+      "motif": "(ac|acq)$"
+    },
+    {
+      "id": "galloromain_ieu",
+      "nom": "-ieu(x) (-acum, franco-provencal)",
+      "couleur": "#fdae61",
+      "type": "suffixe",
+      "motif": "(ieu|ieux)$"
+    },
+    {
+      "id": "galloromain_y",
+      "nom": "-y / -ay / -e (-acum, Nord)",
+      "couleur": "#f46d43",
+      "type": "suffixe",
+      "motif": "(ay|ey|y|é)$"
+    },
+    {
+      "id": "galloromain_an",
+      "nom": "-an / -ans / -ens (-anum)",
+      "couleur": "#c51b7d",
+      "type": "suffixe",
+      "motif": "(an|ans|ens)$"
+    },
+    {
+      "id": "bourg",
+      "nom": "-bourg (place fortifiee)",
+      "couleur": "#fee08b",
+      "type": "suffixe",
+      "motif": "(bourg)$"
+    },
+    {
+      "id": "mont",
+      "nom": "-mont (relief)",
+      "couleur": "#8c510a",
+      "type": "suffixe",
+      "motif": "(mont)$"
+    },
+    {
+      "id": "val",
+      "nom": "-val / -vaux (vallee)",
+      "couleur": "#80cdc1",
+      "type": "suffixe",
+      "motif": "(val|vaux)$"
+    },
+    {
+      "id": "mesnil",
+      "nom": "-mesnil / -menil (domaine rural, Normandie)",
+      "couleur": "#bf812d",
+      "type": "suffixe",
+      "motif": "(mesnil|ménil|menil)$"
+    },
+    {
+      "id": "autre",
+      "nom": "Autre",
+      "couleur": "#e0e0e0",
+      "type": "defaut",
+      "motif": ""
+    }
+  ]
+}
